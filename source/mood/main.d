@@ -42,11 +42,11 @@ void main(string[] args)
     settings.port = 8080;
     settings.options |= HTTPServerOption.distribute;
 
-    import vibe.stream.ssl;
+    import vibe.stream.tls;
     settings.bindAddresses = [ "::1", "127.0.0.1" ];
-    settings.sslContext = createSSLContext(SSLContextKind.server);
-    settings.sslContext.useCertificateChainFile("certs/blog.crt");
-    settings.sslContext.usePrivateKeyFile("certs/blog.key");
+    settings.tlsContext = createTLSContext(TLSContextKind.server);
+    settings.tlsContext.useCertificateChainFile("certs/blog.crt");
+    settings.tlsContext.usePrivateKeyFile("certs/blog.key");
 
     auto router = new URLRouter;
 
